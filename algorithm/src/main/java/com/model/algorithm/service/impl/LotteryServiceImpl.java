@@ -12,10 +12,9 @@ import org.springframework.util.CollectionUtils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 
@@ -50,6 +49,12 @@ public class LotteryServiceImpl extends ServiceImpl<LotteryMapper, Lottery> impl
 //            e.printStackTrace();
 //            logger.error("日期转换错误！！！");
 //        }
+    }
+
+    @Override
+    public List<String> prediction() {
+        //TODO
+        return Collections.emptyList();
     }
 
     //日期格式转换
