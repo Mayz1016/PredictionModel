@@ -17,4 +17,5 @@ public class PredictionModelController {
                           @RequestParam(value = "endTime", required = false) String endTime) {
         lotteryService.cleanData(beginTime, endTime);
     }
+
 }
