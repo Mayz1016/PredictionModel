@@ -4,8 +4,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.model.algorithm.mapper.LotteryMapper;
 import com.model.algorithm.model.DO.Lottery;
 import com.model.algorithm.service.ILotteryService;
+import com.model.algorithm.service.IPredictionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -22,6 +24,9 @@ import java.util.stream.Collectors;
 public class LotteryServiceImpl extends ServiceImpl<LotteryMapper, Lottery> implements ILotteryService {
 
     Logger logger = LoggerFactory.getLogger(LotteryServiceImpl.class);
+
+    @Autowired
+    private IPredictionService predictionService;
 
 
     @Override
@@ -53,8 +58,18 @@ public class LotteryServiceImpl extends ServiceImpl<LotteryMapper, Lottery> impl
 
     @Override
     public List<String> prediction() {
+        //前区号码
+        List<String> preDropNumbers = predictionService.dropFiveGroupHistoryNumbers();
+        List<String> maxTimesPreNumbers = predictionService.maxBeforeTimesNumbers();
+        //取交集
+        List<String> preNumbers = preDropNumbers.stream().filter(maxTimesPreNumbers::contains).collect(Collectors.toList());
+
         //TODO
         return Collections.emptyList();
+    }
+
+    public void model(){
+
     }
 
     //日期格式转换

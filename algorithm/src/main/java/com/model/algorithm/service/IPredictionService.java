@@ -1,5 +1,7 @@
 package com.model.algorithm.service;
 
+import java.util.List;
+
 /**
  * 前区：前五个号码（01-35）
  * 后区：后两个号码（01-12）
@@ -10,5 +12,21 @@ package com.model.algorithm.service;
  * 4、大码选择：28-35中必选一个；
  */
 public interface IPredictionService {
+
+    /**
+     * 剔除五期前区号码
+     *
+     * @return
+     */
+    List<String> dropFiveGroupHistoryNumbers();
+
+    /**
+     * 出现次数最多的20个数字
+     *
+     * @return
+     */
+    List<String> maxBeforeTimesNumbers();
+
+    List<String> twoWancode(List<String> maxNumbers);
 
 }
